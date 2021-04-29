@@ -4,6 +4,9 @@ The Maze sovler 3000 is a learning resource which demonstrates the operations th
 
 This application is a resource to be used by teachers educating their students on the algorithms: Breadth first search and Depth first search.
 
+How to run:
+ - Download all files 
+ - Run "main.py" using a python compiler/IDE (Pycharm recommended) 
 
 Controls:
  - Application is controlled mainly using the buttons seen in the GUI allowing the user to:
