@@ -4,6 +4,10 @@ The Maze sovler 3000 is a learning resource which demonstrates the operations th
 
 This application is a resource to be used by teachers educating their students on the algorithms: Breadth first search and Depth first search.
 
+Requirements:
+ - Python3 
+ - IMPORTANT: You will not be able to run the application without installing the pygame module. To install through pip follow this guide:https://www.pygame.org/wiki/GettingStarted 
+
 How to run:
  - Download all files 
  - Run "main.py" using a python compiler/IDE (Pycharm recommended) 
