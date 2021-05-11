@@ -1,6 +1,7 @@
 import pygame
 from button import Button
 from maze import Maze
+import sys
 
 # Initializes the pygame module
 pygame.init()
@@ -62,7 +63,7 @@ def main_menu():
                     if button.rect.collidepoint(pos):
                         button.call_back()
             if event.type == pygame.QUIT:  # When the user clicks the red X in the top right corner the program closes.
-                pygame.quit()
+                sys.exit()
 
 
 # Function which contains the functionality of the Maze screen.
@@ -79,16 +80,16 @@ def maze_menu():
                                  "AgencyFB", 30)
     maze_size_down_button = Button("-", (633, 145), maze.size_down, colours["pastel_blue"], colours["BLACK"], (25, 50),
                                    "AgencyFB", 30)
-    DFS = Button("DFS", (671, 265), maze.algorithm_update_dfs, colours["BloodOrange"], colours["BLACK"],
+    dfs = Button("DFS", (671, 265), maze.algorithm_update_dfs, colours["BloodOrange"], colours["BLACK"],
                  (100, 50),
                  "AgencyFB", 30)
-    BFS = Button("BFS", (671, 325), maze.algorithm_update_bfs, colours["BloodOrange"],
+    bfs = Button("BFS", (671, 325), maze.algorithm_update_bfs, colours["BloodOrange"],
                  colours["BLACK"],
                  (100, 50), "AgencyFB", 30)
 
     # Maze buttons are stored in an array for when the application checks for events.
     maze_buttons = [generate_button, solve_button, maze_size_up_button, maze_size_down_button,
-                    DFS, BFS]
+                    dfs, bfs]
     running = True
     screen.fill(colours["BLACK"])  # Changes background colour to remove any of the icons and buttons from the main menu
     while running:
@@ -109,7 +110,7 @@ def maze_menu():
         for event in pygame.event.get():
             # Checks if the user exits the program.
             if event.type == pygame.QUIT:
-                pygame.quit()
+                sys.exit()
 
             # Checks if user clicks any button.
             if event.type == pygame.MOUSEBUTTONUP:
@@ -126,33 +127,20 @@ def maze_menu():
 
 # Function which stores the functionality of the Tutorial screen.
 def tutorial_menu():
-    maze = Maze(screen, 10)  # creates maze object.
-    maze.generate()
-    next_step = Button(">>", (671, 25), button_pressed, colours["GREEN"], colours["BLACK"], (25, 25),
-                       "AgencyFB", 30)
-    previous_step = Button("<<", (671, 55), button_pressed, colours["RED"], colours["BLACK"], (25, 25),
-                           "AgencyFB", 30)
+    screen.fill(colours["BLACK"])
+    image = pygame.image.load(
+        'development_info.PNG')  # variable which holds the image informing the user that this screen is just a place holder for now.
+    screen.blit(image, (65, 200))  # adds the image to the screen.
 
-    tutorial_buttons = [next_step, previous_step]
+    pygame.display.flip()
     running = True
     while running:
-        for button in tutorial_buttons:
-            button.draw(screen)
-
-        pygame.display.flip()
 
         # Button presses are constantly checked for.
         for event in pygame.event.get():
             # Checks if the user exits the program.
             if event.type == pygame.QUIT:
-                pygame.quit()
-
-            # Checks if user clicks any button.
-            if event.type == pygame.MOUSEBUTTONUP:
-                pos = pygame.mouse.get_pos()
-                for button in tutorial_buttons:
-                    if button.rect.collidepoint(pos):
-                        button.call_back()
+                sys.exit()
 
             # Checks if user presses the escape key in which case returns to the main menu screen.
             if event.type == pygame.KEYDOWN:
@@ -161,4 +149,3 @@ def tutorial_menu():
 
 
 main_menu()
-
